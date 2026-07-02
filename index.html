@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC Splash Screen</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#0d0d0d;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+}
+
+.splash{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:fadeIn 1.2s ease;
+}
+
+.logo{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    animation:pulse 2s infinite ease-in-out;
+    filter:drop-shadow(0 0 20px rgba(255,215,0,.4));
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.06);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="splash">
+    <img src="cc.png" alt="CC Coin" class="logo">
+</div>
+
+<script>
+// Redirect after 3 seconds
+setTimeout(() => {
+    window.location.href = "cryptocrackerhome.html";
+}, 3000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto</title>
+  <style>
+    * { 
+      box-sizing: border-box; 
+      font-family: Arial, Helvetica, sans-serif; 
+    }
+
+    body { 
+      margin: 0; 
+      background: #0b0f1a; 
+      color: #ffffff; 
+      min-height: 100vh; 
+    }
+    /* Header */
+.header {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  position: relative; 
+  height: 60px; 
+  background: #0f1629;
+  border-bottom: 1px solid #1e2a4a;
+}
+
+.back-btn { 
+  position: absolute; 
+  left: 15px; 
+  font-size: 24px; 
+  cursor: pointer; 
+  text-decoration: none; 
+  color: #ffffff; 
+}
+
+.title { 
+  font-size: 22px; 
+  font-weight: bold; 
+  letter-spacing: 1px;
+  color: goldenrod; 
+}
+
+/* Message */
+.message { 
+  text-align: center; 
+  margin: 20px 10px 10px; 
+  font-size: 16px; 
+  color: #9bb0ff; 
+}
+
+/* Grid */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 15px; 
+  padding: 20px; 
+  max-width: 900px; 
+  margin: 0 auto; 
+}
+
+.item { 
+  text-align: center; 
+}
+
+.box {
+  background: #141c33; 
+  border: 2px solid transparent; 
+  border-radius: 12px;
+  height: 100px; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  transition: all 0.3s ease; 
+  margin-bottom: 8px;
+}
+.box img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 10px; 
+}
+
+.label { 
+  font-size: 14px; 
+  color: #c7d2ff; 
+}
+.box.selected { 
+  border-color: #4f7cff; 
+  box-shadow: 0 0 15px rgba(79,124,255,0.8); 
+}
+
+/* Start button */
+.start-container { 
+  text-align: center; 
+  margin: 20px; 
+}
+.start-btn {
+  padding: 14px 40px; 
+  font-size: 18px; 
+  border: none; 
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4f7cff, #7f5bff); color: #fff; cursor: pointer;
+}
+
+/* Loading screen */
+.loading-screen { 
+  display: none; 
+  position: fixed; 
+  inset: 0; 
+  background: #0b0f1a; 
+  align-items: center; 
+  justify-content: center; 
+  z-index: 1000; 
+}
+
+.loader { 
+  position: relative; 
+  width: 120px; 
+  height: 120px; 
+}
+
+.loader span { 
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  border-radius: 50%; 
+  border: 3px solid transparent; 
+  border-top-color: #4f7cff; 
+  animation: spin 1.5s linear infinite; 
+}
+.loader span:nth-child(2) { 
+  border-top-color: #7f5bff; 
+  animation-duration: 2s; 
+}
+.loader span:nth-child(3) { 
+  border-top-color: #00e0ff; 
+  animation-duration: 2.5s; 
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Next page */
+.page { 
+  display: none; 
+}
+.selected-row { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 12px; 
+  padding: 20px; 
+  max-width: 900px; 
+  margin: 0 auto; 
+}
+.selected-row .box { 
+  height: 110px; 
+  cursor: default; 
+}
+.mnemonic-wrap { 
+  max-width: 900px; 
+  margin: 0 auto; 
+  padding: 10px 20px; 
+}
+.mnemonic-box {
+  background: #0f1629; 
+  border: 1px solid #1e2a4a; 
+  border-radius: 12px;
+  height: 260px; 
+  overflow: hidden; 
+  padding: 12px; 
+  font-family: monospace;
+}
+.line {  
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+@keyframes rise { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.stats { 
+  text-align: center; 
+  margin: 12px 0 30px; 
+  color: #c7d2ff; 
+}
+
+/* FOUND RESULT */
+.found-result {
+  display: none;
+  max-width: 900px;
+  margin: 20px auto;
+  background: #0f1629;
+  border: 1px solid #1e2a4a;
+  border-radius: 14px;
+  padding: 14px;
+  animation: rise 0.5s ease;
+}
+
+.found-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #7f5bff;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.found-header img {
+  width: 22px;
+  height: 22px;
+}
+
+.found-balance {
+  font-size: 15px;
+  color: #c7d2ff;
+  margin-bottom: 6px;
+}
+
+.price {
+  color: rgb(10, 214, 10);
+}
+
+.trx {
+  color: gold;
+}
+
+.found-phrase {
+  font-family: monospace;
+  font-size: 14px;
+  color: #9bb0ff;
+  margin-bottom: 10px;
+}
+
+.copy-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4f7cff, #7f5bff);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>  <!-- PAGE 1 -->  <div class="page" id="page1" style="display:block;">
+    <div class="header">
+      <a href="cryptocrackerhome.html" class="back-btn">&#8592;</a>
+      <div class="title">CryptoCracker</div>
+    </div><div class="message">Select four Cyptocurrency</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="start-container">
+  <button class="start-btn" id="startBtn">Start</button>
+</div>
+
+  </div>  <!-- LOADING -->  <div class="loading-screen" id="loading">
+    <div class="loader"><span></span><span></span><span></span></div>
+  </div>  <!-- PAGE 2 -->  <div class="page" id="page2">
+    <div class="header">
+      <div class="title">CryptoCracker</div>
+    </div><div class="selected-row" id="selectedRow"></div>
+
+<div class="mnemonic-wrap">
+  <div class="mnemonic-box" id="mnemonicBox"></div>
+</div>
+
+<div class="stats">
+  <div id="generatedCount">Generated : 0</div>
+  <div id="foundCount">Found: 0</div>
+</div>
+
+<div class="found-result" id="foundResult">
+  <div class="found-header">
+    <img src="https://cryptologos.cc/logos/tron-trx-logo.png">
+    <span>Wallet Found</span>
+  </div>
+
+  <div class="found-balance">Balance : <a class="trx">126.5678</a> TRX - <a class="price">$ 20</a></div>
+
+  <div class="found-phrase" id="foundPhrase">
+    Phrase : word van book ...
+  </div>
+
+  <button class="copy-btn" id="copyPhraseBtn">Copy Phrase</button>
+</div>
+
+  </div>  
+<script>
+
+const LIMIT_KEY="daily_limit_end";let generatorInterval=null;
+window.addEventListener('load',()=>{let e=localStorage.getItem(LIMIT_KEY);if(e&&Date.now()<+e)showDailyPopup(+e);else localStorage.removeItem(LIMIT_KEY);});
+function startDailyLimit(){let e=Date.now()+86400000;localStorage.setItem(LIMIT_KEY,e);showDailyPopup(e);}
+function showDailyPopup(e){dailyPopup.style.display='flex';upd(e);let i=setInterval(()=>{if(Date.now()>=e){clearInterval(i);localStorage.removeItem(LIMIT_KEY);location.reload();}else upd(e);},1000);}
+function upd(e){let d=e-Date.now(),h=Math.floor(d/36e5),m=Math.floor(d/6e4)%60,s=Math.floor(d/1e3)%60;dailyTimer.textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+
+    const names = [
+      'BTC','ETH','LTC',
+      'BNB','DOGDE','XRP',
+      'TRX','SOL','USDT'
+    ];
+
+    const images = [
+      'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
+      'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+      'https://cryptologos.cc/logos/litecoin-ltc-logo.png',
+      'https://cryptologos.cc/logos/bnb-bnb-logo.png',
+      'https://cryptologos.cc/logos/dogecoin-doge-logo.png',
+      'https://cryptologos.cc/logos/xrp-xrp-logo.png',
+      'https://cryptologos.cc/logos/tron-trx-logo.png',
+      'https://cryptologos.cc/logos/solana-sol-logo.png',
+      'https://cryptologos.cc/logos/tether-usdt-logo.png'
+    ];
+
+    const grid = document.getElementById('grid');
+    const startBtn = document.getElementById('startBtn');
+    const loading = document.getElementById('loading');
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const selectedRow = document.getElementById('selectedRow');
+    const mnemonicBox = document.getElementById('mnemonicBox');
+    const generatedCountEl = document.getElementById('generatedCount');
+
+    let selected = [];
+    let generatedCount = 48292;
+
+    // build grid
+    names.forEach((name, i) => {
+      const item = document.createElement('div');
+      item.className = 'item';
+
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = `<img src="${images[i]}" />`;
+
+      const label = document.createElement('div');
+      label.className = 'label';
+      label.textContent = name;
+
+      box.onclick = () => {
+        const idx = selected.indexOf(i);
+        if (idx !== -1) {
+          selected.splice(idx, 1);
+          box.classList.remove('selected');
+        } else if (selected.length < 4) {
+          selected.push(i);
+          box.classList.add('selected');
+        }
+      };
+
+      item.appendChild(box);
+      item.appendChild(label);
+      grid.appendChild(item);
+    });
+
+    startBtn.onclick = () => {
+      if (selected.length !== 4) return alert('Please select exactly four items.');
+      loading.style.display = 'flex';
+      setTimeout(() => {
+        loading.style.display = 'none';
+        page1.style.display = 'none';
+        page2.style.display = 'block';
+        renderSelected();
+        startGenerating();
+      }, 3000);
+    };
+
+    function renderSelected() {
+      selected.forEach(i => {
+        const box = document.createElement('div');
+        box.className = 'box selected';
+        box.innerHTML = `<img src="${images[i]}" />`;
+        selectedRow.appendChild(box);
+      });
+    }
+
+    const wordlist = ['apple','binary','crypto','delta','energy','future','galaxy','hash','icon','jungle','kernel','ledger','matrix','node','oracle','pixel','quantum','random','signal','token','unified','vector','wallet','xenon','yield','zero'];
+
+    function generateMnemonic() {
+      let words = [];
+      for (let i = 0; i < 12; i++) {
+        words.push(wordlist[Math.floor(Math.random() * wordlist.length)]);
+      }
+      return words.join(' ');
+    }
+
+    function startGenerating() {
+      generatorInterval=setInterval(() => {
+        const line = document.createElement('div');
+        line.className = 'line';
+        const phrase = generateMnemonic();
+        const maxLen = 22; // fixed preview length
+        let preview = phrase.slice(0, maxLen);
+        // ensure last word is incomplete
+        const lastSpace = preview.lastIndexOf(' ');
+        if (lastSpace !== -1) {
+          preview = preview.slice(0, Math.max(lastSpace + 1, preview.length - 2));
+        }
+        const shortPhrase = preview.trim() + '...';
+        line.textContent = 'GeneratedPhrase : ' + shortPhrase;
+        mnemonicBox.appendChild(line);
+        mnemonicBox.scrollTop = mnemonicBox.scrollHeight;
+        generatedCount++;
+        generatedCountEl.textContent = 'Generated : ' + generatedCount;
+      }, 50);
+    }
+
+const foundCountEl = document.getElementById('foundCount');
+const foundResult = document.getElementById('foundResult');
+const foundPhraseEl = document.getElementById('foundPhrase');
+const copyPhraseBtn = document.getElementById('copyPhraseBtn');
+
+let fullFoundPhrase = '';
+let foundShown = false;
+
+// after 30 seconds → FOUND = 1
+setTimeout(() => {
+  if (foundShown) return;
+  foundShown = true;
+
+  foundCountEl.textContent = 'Found : 1';
+
+  // generate a real 12-word phrase
+  let words = [];
+  for (let i = 0; i < 12; i++) {
+    words.push(wordlist[Math.floor(Math.random() * wordlist.length)]);
+  }
+  fullFoundPhrase = words.join(' ');
+
+  // show only first 3 words
+  foundPhraseEl.textContent =
+    'Phrase : ' + words.slice(0, 4).join(' ') + ' ...';
+
+  foundResult.style.display = 'block';
+}, 30000);
+
+// copy full phrase
+copyPhraseBtn.onclick = () => {
+  navigator.clipboard.writeText(fullFoundPhrase);
+  copyPhraseBtn.textContent = 'Copied ✓';
+  setTimeout(() => copyPhraseBtn.textContent = 'Copy Phrase', 1500);
+};
+  </script><div id="dailyPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;justify-content:center;align-items:center"><div style="background:#141c33;padding:25px;border-radius:15px;text-align:center;width:90%;max-width:360px"><h2>Daily Limit Reached</h2><p>You have used your 10 seconds for today.</p><div id="dailyTimer" style="font-size:28px">24:00:00</div><button onclick="location.href='getkey.html'">Get Key</button> <button onclick="location.href='back.html'">Back</button></div></div></body>
+</html>

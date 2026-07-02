@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoCracker</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- =========================
+     PAGE 1
+========================= -->
+
+<div class="page active" id="page1">
+
+    <header class="header">
+        <a href="index.html" class="back-btn">&#8592;</a>
+        <h1 class="title">CryptoCracker</h1>
+    </header>
+
+    <p class="message">
+        Select four Cryptocurrency
+    </p>
+
+    <div class="grid" id="grid">
+        <!-- JavaScript creates the crypto cards -->
+    </div>
+
+    <div class="start-container">
+        <button id="startBtn" class="start-btn">
+            Start
+        </button>
+    </div>
+
+</div>
+
+<!-- =========================
+     LOADING SCREEN
+========================= -->
+
+<div class="loading-screen" id="loading">
+
+    <div class="loader">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<div class="page" id="page2">
+
+    <header class="header">
+        <h1 class="title">CryptoCracker</h1>
+    </header>
+
+    <div class="selected-row" id="selectedRow">
+        <!-- Selected coins appear here -->
+    </div>
+
+    <div class="mnemonic-wrap">
+
+        <div class="mnemonic-box" id="mnemonicBox">
+
+            <!-- Generated phrases -->
+
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div id="generatedCount">
+            Generated : 48292
+        </div>
+
+        <div id="foundCount">
+            Found : 0
+        </div>
+
+    </div>
+
+    <!-- =========================
+         WALLET FOUND
+    ========================== -->
+
+    <div class="found-result" id="foundResult">
+
+        <div class="found-header">
+
+            <img
+                src="https://cryptologos.cc/logos/tron-trx-logo.png"
+                alt="TRX">
+
+            <span>Wallet Found</span>
+
+        </div>
+
+        <div class="found-balance">
+
+            Balance :
+            <span class="trx">126.5678 TRX</span>
+            -
+            <span class="price">$20</span>
+
+        </div>
+
+        <div
+            class="found-phrase"
+            id="foundPhrase">
+
+            Phrase :
+            word word word word ...
+
+        </div>
+
+        <button
+            id="copyPhraseBtn"
+            class="copy-btn">
+
+            Copy Phrase
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     DAILY LIMIT POPUP
+========================= -->
+
+<div
+    class="popup-overlay"
+    id="dailyPopup">
+
+    <div class="popup">
+
+        <h2>Daily Limit Reached</h2>
+
+        <p>
+
+            You have used your
+            <strong>30 mintues</strong>
+            for today.
+
+        </p>
+
+        <p>
+
+            Come back in
+
+        </p>
+
+        <div
+            id="countdown"
+            class="countdown">
+
+            24:00:00
+
+        </div>
+
+        <div class="popup-buttons">
+
+            <button
+                id="getKeyBtn"
+                class="key-btn">
+
+                🔑 Get Key
+
+            </button>
+
+            <button
+                id="backBtn"
+                class="back-popup-btn">
+
+                ← Back
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>

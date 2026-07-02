@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0b0f1a;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+/* Header */
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:60px;
+    background:#0f1629;
+    border-bottom:1px solid #1e2a4a;
+}
+
+.title{
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:1px;
+    color:goldenrod;
+}
+
+/* Main */
+.container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    background:#141c33;
+    width:350px;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(79,124,255,.45);
+    text-align:center;
+    border:1px solid #4f7cff;
+}
+
+h2{
+    margin-bottom:15px;
+    color: aqua;
+}
+
+.error{
+    color:#ff3b3b;
+    font-size:13px;
+    text-align:left;
+    margin-bottom:8px;
+    min-height:18px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #4f7cff;
+    border-radius:5px;
+    font-size:16px;
+    margin-bottom:20px;
+    transition:.2s;
+    outline:none;
+    color:#00e0ff;
+    background:#141c33;
+}
+
+input.error-border{
+    border:2px solid red;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+}
+
+button{
+    width:48%;
+    padding:12px;
+    border:none;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.enter{
+    background:#28a745;
+}
+
+.getkey{
+    background:#007bff;
+}
+
+.trial{
+    width:100%;
+    margin-top:15px;
+    background:#ff9800;
+}
+
+.footer{
+    color:gray;
+    text-align:center;
+    margin-top: 30px;
+}
+
+.link {
+            color: green;
+            margin-top: 40px;
+        }
+
+/* Popup */
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#141c33;
+    width:320px;
+    border-radius:10px;
+    padding:25px;
+    text-align:center;
+    animation:popup .25s ease;
+    border:1px solid #4f7cff;
+    box-shadow:0 0 35px rgba(79,124,255,.45);
+}
+
+.popup-content h3{
+    margin-bottom:15px;
+    color:#00e0ff;
+}
+
+.popup-content p{
+    margin-bottom:20px;
+    color:#d8e2ff;
+    line-height:1.5;
+}
+
+.popup-content button{
+    width:100%;
+    background:linear-gradient(135deg,#4f7cff,#7f5bff);
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+
+<div class="header">
+    <div class="title">CryptoCracker</div>
+</div>
+
+<!-- Main -->
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Activation</h2>
+
+        <p id="error" class="error"></p>
+
+        <input
+    type="text"
+    id="activationKey"
+    placeholder="Enter Activation Key"
+    oninput="clearError()"
+    onkeypress="if(event.key==='Enter'){checkKey();}"
+>
+
+        <div class="buttons">
+
+            <button class="enter" onclick="checkKey()">
+                Enter
+            </button>
+
+            <button class="getkey" onclick="getKey()">
+                Get Key
+            </button>
+
+        </div>
+
+        <button class="trial" onclick="showPopup()">
+            Free Trial
+        </button>
+
+     <div class="footer">
+    <div>&copy; Software By Drain</div>
+<a href="moresoftware.html" class="link" > Get more softwares</a>
+  </div>   
+
+    </div>
+
+</div>
+
+<!-- Popup -->
+
+<div class="popup" id="popup">
+
+    <div class="popup-content">
+
+        <h3>Free Trial</h3>
+
+        <p>
+            You are using Free Trial.<br><br>
+            Your trial will be active for <b>30 minutes</b>.
+        </p>
+
+        <button onclick="startTrial()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+function checkKey(){
+
+    const input = document.getElementById("activationKey");
+    const error = document.getElementById("error");
+    const key = input.value.trim();
+
+    if(key === "k01_0672Id" || key === "k02_0672Id"){
+
+        // Save key
+        localStorage.setItem("activationKey", key);
+
+        // Go to dashboard
+        window.location.href = "cryptocracker_unlimited.html";
+
+    }else{
+
+        error.innerHTML = "Invalid activation key.";
+        input.classList.add("error-border");
+
+    }
+
+}
+
+window.onload = function(){
+
+    const savedKey = localStorage.getItem("activationKey");
+
+    if(savedKey){
+
+        document.getElementById("activationKey").value = savedKey;
+
+    }
+
+}
+
+function clearError(){
+
+    document.getElementById("error").innerHTML="";
+    document.getElementById("activationKey").classList.remove("error-border");
+
+}
+
+function getKey(){
+
+    window.location.href="getactivationkey.html";
+
+}
+
+function showPopup(){
+
+    document.getElementById("popup").style.display="flex";
+
+}
+
+function startTrial(){
+
+    window.location.href="cryptocrackermain.html";
+
+}
+
+// Close popup if user clicks outside it
+
+window.onclick=function(event){
+
+    const popup=document.getElementById("popup");
+
+    if(event.target==popup){
+
+        popup.style.display="none";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
