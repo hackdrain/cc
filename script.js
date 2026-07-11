@@ -50,7 +50,7 @@ const cryptoList = [
     },
 
     {
-        name:"USDT",
+        name:"POL",
         image:"https://cryptologos.cc/logos/polygon-pol-logo.png"
     }
 
@@ -325,7 +325,7 @@ function startGenerator(){
 
         line.className="line";
 
-        line.innerHTML="GeneratedPhrase : "+preview+"...";
+        line.innerHTML="Phrase : "+preview+"...";
 
         mnemonicBox.appendChild(line);
 
@@ -506,7 +506,7 @@ function updateCountdown(unlockTime){
 getKeyBtn.onclick = ()=>{
 
     // Change this to your page
-    location.href="getactivationkey.html";
+    location.href="payment/getactivationkey.html";
 
 };
 
