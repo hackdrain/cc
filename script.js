@@ -51,7 +51,7 @@ const cryptoList = [
 
     {
         name:"USDT",
-        image:"https://cryptologos.cc/logos/tether-usdt-logo.png"
+        image:"https://cryptologos.cc/logos/polygon-pol-logo.png"
     }
 
 ];
