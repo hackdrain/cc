@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>TRON Payment</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="pay.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <a class="circle-btn" >
+
+            <svg viewBox="0 0 24 24">
+                <path d="M15 18L9 12L15 6"/>
+            </svg>
+
+        </a>
+
+        <div class="title">
+
+            <h1>TRON Payment</h1>
+
+            <p>Send the exact amount to complete your payment</p>
+
+        </div>
+
+        <button class="circle-btn">
+
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2L4 5V11C4 16.5 7.5 21.2 12 22C16.5 21.2 20 16.5 20 11V5L12 2Z"/>
+            </svg>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- Amount Card -->
+
+    <div class="amount-card">
+
+        <h3>Amount to Pay</h3>
+
+        <div class="usd-row">
+
+            <h2 id="usdAmount">$100.00</h2>
+
+            <span class="usd-pill">
+
+                USD
+
+            </span>
+
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="trx-row">
+
+            <img class="tron-icon"
+                 src="trx.png">
+
+            <h4 id="trxAmount">
+
+                ≈370.37 TRX
+
+            </h4>
+
+        </div>
+
+        <div class="rate">
+
+            <span id="trxRate">
+
+                1 TRX ≈ $0.3256 USD
+
+            </span>
+
+            <button id="refreshRate">
+
+                ⟳
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Time Card -->
+
+    <div class="info-card">
+
+        <div class="left">
+
+            <div class="green-icon">
+
+                🕒
+
+            </div>
+
+            <span>
+
+                Time Remaining
+
+            </span>
+
+        </div>
+
+        <strong id="timer">
+
+            30:00
+
+        </strong>
+
+    </div>
+
+
+
+    <!-- Status Card -->
+
+    <div class="info-card">
+
+        <div class="left">
+
+            <div class="orange-dot"></div>
+
+            <span>
+
+                Waiting for Payment
+
+            </span>
+
+        </div>
+
+        <div class="spinner"></div>
+
+    </div>
+
+
+
+    <!-- QR Card -->
+
+
+
+    <!-- Network -->
+
+    <div class="network-card">
+
+        <div class="network-top">
+
+            <span>
+
+                Network
+
+            </span>
+
+            <div class="badge">
+
+                TRC20
+
+            </div>
+
+        </div>
+
+        <h4>
+
+            TRON (TRC20)
+
+        </h4>
+
+    </div>
+
+
+
+    <!-- Wallet -->
+
+    <div class="wallet-card">
+
+        <span>
+
+            Wallet Address
+
+        </span>
+
+        <div class="wallet-row">
+
+            <div id="wallet">
+
+                TXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+            </div>
+
+            <button id="copyBtn">
+
+                Copy
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Button -->
+
+    <button id="paidBtn">
+
+        ✔ I've Paid
+
+    </button>
+
+
+
+    <div class="footer">
+
+        <span>
+
+            🛡
+
+        </span>
+
+        <p>
+
+            Your payment will be verified after it is received.
+
+        </p>
+
+    </div>
+
+</div>
+
+<script src="pay.js"></script>
+
+</body>
+</html>
