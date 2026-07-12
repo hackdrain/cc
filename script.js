@@ -106,6 +106,13 @@ const getKeyBtn=document.getElementById("getKeyBtn");
 
 const backBtn=document.getElementById("backBtn");
 
+const selectPopup = document.getElementById("selectPopup");
+const closeSelectPopup = document.getElementById("closeSelectPopup");
+
+closeSelectPopup.onclick = () => {
+    selectPopup.style.display = "none";
+};
+
 // -----------------------------
 // Variables
 // -----------------------------
@@ -227,11 +234,8 @@ window.onload=()=>{
 startBtn.onclick = () => {
 
     if (selected.length !== 4) {
-
-        alert("Please select exactly four cryptocurrencies.");
-
+        selectPopup.style.display = "flex";
         return;
-
     }
 
     loading.style.display = "flex";
@@ -241,15 +245,12 @@ startBtn.onclick = () => {
         loading.style.display = "none";
 
         page1.classList.remove("active");
-
         page2.classList.add("active");
 
         renderSelectedCoins();
-
         startGenerator();
 
-    },3000);
-
+    }, 3000);
 };
 
 
