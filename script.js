@@ -51,7 +51,7 @@ const cryptoList = [
 
     {
         name:"POL",
-        image:"https://cryptologos.cc/logos/polygon-pol-logo.png"
+        image:"https://cryptologos.cc/logos/polygon-matic-logo.svg"
     }
 
 ];
