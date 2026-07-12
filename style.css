@@ -596,18 +596,6 @@ transform:rotate(360deg);
 
 @media(max-width:700px){
 
-.grid{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-.selected-row{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
 .popup{
 
     width:95%;
