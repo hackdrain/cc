@@ -64,15 +64,35 @@ body{
 </head>
 <body>
 
-<div class="splash">
+<div class="splash" id="splash">
     <img src="cc.png" alt="CC Coin" class="logo">
 </div>
 
+<div id="offline" style="display:none;text-align:center;">
+    <div style="font-size:120px;font-weight:bold;color:red;">!</div>
+    <div style="font-size:36px;font-weight:bold;color:white;">
+        Internet Error
+    </div>
+</div>
+
 <script>
-// Redirect after 3 seconds
-setTimeout(() => {
-    window.location.href = "cryptocrackerhome.html";
-}, 3000);
+if (navigator.onLine) {
+
+    setTimeout(() => {
+        window.location.href = "cryptocrackerhome.html";
+    }, 3000);
+
+} else {
+
+    document.getElementById("splash").style.display = "none";
+    document.getElementById("offline").style.display = "block";
+
+}
+
+// Detect if connection is restored
+window.addEventListener("online", () => {
+    location.reload();
+});
 </script>
 
 </body>
